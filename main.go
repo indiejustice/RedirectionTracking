@@ -76,6 +76,18 @@ func redirectionHandler(w http.ResponseWriter, r *http.Request) {
 		logDebug.Println("Event Label:", eventLabel)
 	}
 
+	realIP := r.Header.Get("CF-Connecting-IP")
+
+	if realIP == "" {
+		realIP = r.Header.Get("X-Forwarded-For")
+	}
+
+	if realIP == "" {
+		realIP = r.RemoteAddr
+	}
+
+	logDebug.Println("real IP:", realIP)
+
 	if event, ok := config.Events[uriSegments[1]]; ok {
 
 		api := new(ga.API)
@@ -85,6 +97,8 @@ func redirectionHandler(w http.ResponseWriter, r *http.Request) {
 		api.ContentType = "application/x-www-form-urlencoded"
 
 		client := new(ga.Client)
+		client.AnonymizeIP = "true"
+		client.IPOverride = realIP
 		client.ProtocolVersion = "1"
 		client.TrackingID = config.GAID
 		client.HitType = "event"
