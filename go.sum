@@ -1,0 +1,6 @@
+github.com/OzqurYalcin/google-analytics v0.0.0-20190319230318-fa110ab39a65 h1:lyIKELTD50lq/41WBW0KaHB6G4PfAe5l857lvmitKv4=
+github.com/OzqurYalcin/google-analytics v0.0.0-20190319230318-fa110ab39a65/go.mod h1:OXb2y3QrB0DZin0BOfxssXo85IEUaEd3fYX/1ou9RV8=
+github.com/google/uuid v1.1.2 h1:EVhdT+1Kseyi1/pUmXKaFxYsDNy9RQYkMWRH68J/W7Y=
+github.com/google/uuid v1.1.2/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/indiejustice/google-analytics v0.0.0-20190319230318-fa110ab39a65 h1:5Xpr62Aot54BNATEahLkdzJvvTTnPxmTGzaraQiQsJU=
+github.com/indiejustice/google-analytics v0.0.0-20190319230318-fa110ab39a65/go.mod h1:D7xsye1RHbAkoY+7/cgPewgGo3AGNgpZVtxrKWrXPGU=
