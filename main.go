@@ -22,6 +22,8 @@ type Configuration struct {
 }
 type Event struct {
 	URL      string `json:"url"`
+	Android  string `json:"android"`
+	IOS      string `json:"ios"`
 	Category string `json:"category"`
 	Action   string `json:"action"`
 	Label    string `json:"label"`
@@ -109,7 +111,19 @@ func redirectionHandler(w http.ResponseWriter, r *http.Request) {
 
 		api.Send(client)
 
-		http.Redirect(w, r, event.URL, 301)
+		finalURL := event.URL
+
+		if event.Android != "" && strings.Contains(strings.ToLower(r.UserAgent()), " android ") {
+			finalURL = event.Android
+			logDebug.Println("Android Deep Link:", finalURL)
+		}
+
+		if event.IOS != "" && (strings.Contains(r.UserAgent(), " iPad ") || strings.Contains(r.UserAgent(), " iPhone ") || strings.Contains(r.UserAgent(), " iPod ")) {
+			finalURL = event.IOS
+			logDebug.Println("iOS Deep Link:", finalURL)
+		}
+
+		http.Redirect(w, r, finalURL, 301)
 		return
 	}
 
